@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     end
 
     # user SHOW route
-    get '/users/:slug' do
+    get '/users/:id' do
       # what do I need to do first?
       @user = User.find_by(id: params[:id])
 
@@ -71,6 +71,7 @@ class UsersController < ApplicationController
     get '/logout' do
       session.clear
       redirect '/'
+    
     end
 
 
