@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
       redirect "/users/#{current_user}"
     
     else
-    erb :welcome
+      erb :welcome
     end
   end
 
