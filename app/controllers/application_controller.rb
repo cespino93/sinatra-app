@@ -6,13 +6,13 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "our_awesome_journal_app"
+    set :session_secret, "our_awesome_recipe_app"
   end
 
   get "/" do
     # redirect '/login'
     if logged_in?
-      redirect "/users/#{current_user}"
+      redirect "/users/#{current_user.id}"
     
     else
       erb :welcome
@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
     end
 
   def current_user
-    @current_user ||= user.find(id: session[:user_id])
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
 end
