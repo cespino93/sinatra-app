@@ -27,6 +27,7 @@ class CreateRecipesController < ApplicationController
     get '/create_recipes/:id' do
         # @create_recipe = CreateRecipe.find(params[:id])
         @create_recipe = current_user.recipes.find(params[:id])
+        # set_create_recipe
         # erb :show
         erb :'/create_recipes/show'
     end
@@ -34,8 +35,30 @@ class CreateRecipesController < ApplicationController
     # This route should send us to create_recipes/edit.erb which will
     # render an edit form
     get '/create_recipes/:id/edit' do
+        @create_recipe = current_user.recipes.find(params[:id])
         erb :'/create_recipes/edit'
       end
+
+
+    patch '/create_recipes/:id/edit' do
+        # 1. Find the Recipe Entry
+        @create_recipe = current_user.recipes.find(params[:id])
+        # 2. modify (update) the journal entry
+        @create_recipe.update(
+            content: params[:content]
+        )
+        # 3. redirect to show page
+        redirect "/create_recipes/#{@create_recipe.id}"
+      end 
+
     
     # index route for all recipes
+
+
+    #SAVE FOR ASSESSMENT
+    # private #Private, means were not going to call anywhere else outside this class
+
+    # def set_create_recipe
+    #     @create_recipe = current_user.recipes.find(params[:id])
+    # end
 end

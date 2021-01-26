@@ -1,1 +1,8 @@
-Edit Form Goes Here
+EDIT PAGE FOR JOURNAL entry
+
+<form class=" action="/create_recipes/<%= @create_recipe.id %>" method="post">
+    <input id ="hidden" type="hidden" name="_method" value="patch">
+    <label for="content">Content:</label>
+    <textarea name="content" style="width:auto; height:auto;"><%= @create_recipe.content %></textarea>
+    <input type="submit" name="" value="Edit Recipe">
+</form>
