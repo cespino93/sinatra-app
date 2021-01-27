@@ -25,10 +25,14 @@ class ApplicationController < Sinatra::Base
       # true if user is logged in, otherwise false
       !!current_user
     end
-
+     
+    #Helper Method
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
-end
+    def authorized_to_edit?(create_recipe)
+        @create_recipe.user == current_user
+    end
+ end
 end
