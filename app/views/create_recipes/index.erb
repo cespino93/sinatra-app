@@ -1,1 +1,12 @@
-INDEX PAGE FOR RECIPES
+ALL RECIPES
+
+<% @recipes.each do |recipe| %>
+
+
+    <h4><a href="/create_recipes/<%= recipe.id %>">
+    <%=recipe.created_at %></a></h4>
+    
+    <p><%= recipe.content %></p>
+    <p>By <%= recipe.user.name %></p>
+    <br><br>
+<% end %>
