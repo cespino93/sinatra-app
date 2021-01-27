@@ -1,4 +1,9 @@
 class CreateRecipesController < ApplicationController
+    
+    get '/create_recipes' do
+        @recipes = Recipe.all
+        erb :'/create_recipes/index'
+end
 
     # get create_recipes/new to render a form to create new entry
     get '/create_recipes/new' do
@@ -11,6 +16,7 @@ class CreateRecipesController < ApplicationController
         if !logged_in?
             redirect '/'
         end
+        
         # I only want to save the entry if it has some content
         if params[:content] != ""
             # create a new entry
@@ -36,26 +42,43 @@ class CreateRecipesController < ApplicationController
     # render an edit form
     get '/create_recipes/:id/edit' do
         @create_recipe = current_user.recipes.find(params[:id])
-        erb :'/create_recipes/edit'
-      end
-
+        if logged_in?
+        # if @create_recipe.user == current_user
+        if authorized_to_edit?(create_recipe) #Helper Method
+            erb :'/create_recipes/edit'
+        else
+            redirect "users/#{current_user.id}"
+        end
+    else
+        redirect '/'
+    end
+end
 
     patch '/create_recipes/:id/edit' do
         # 1. Find the Recipe Entry
         @create_recipe = current_user.recipes.find(params[:id])
+        if logged_in?
+            if @create_recipe.user == current_user
         # 2. modify (update) the journal entry
         @create_recipe.update(
             content: params[:content]
         )
         # 3. redirect to show page
         redirect "/create_recipes/#{@create_recipe.id}"
+            else
+                redirect "users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
       end 
 
     
+    
+    
     # index route for all recipes
-
-
     #SAVE FOR ASSESSMENT
+    
     # private #Private, means were not going to call anywhere else outside this class
 
     # def set_create_recipe
