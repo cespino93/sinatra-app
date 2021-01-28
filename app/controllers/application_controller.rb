@@ -26,13 +26,15 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
      
-    #Helper Method
+    
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
     def authorized_to_edit?(create_recipe)
-        @create_recipe.user == current_user
+      @create_recipe.user == current_user
     end
- end
+ 
+  end
+
 end

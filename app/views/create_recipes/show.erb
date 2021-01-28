@@ -3,8 +3,12 @@ SHOW PAGE FOR A NEW RECIPE
 <p><%= @create_recipe.content %></p>
 
 
-<% if authorized_to_edit?(@journal_entry)%>
+<% if authorized_to_edit?(@journal_entry) %>
     <a href="/create_recipes/<%= @create_recipe.id %>/edit">Edit Recipe</a>
-
-    # Delete Link
+    <br><br>
+    <form class="" action="/create_recipes/<%= @create_recipe.id %>" method="post">
+    
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="" value="Delete this Recipe">
+    </form>
 <% end %>

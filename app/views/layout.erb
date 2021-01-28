@@ -15,16 +15,18 @@
   </head>
   <body>
     <div class="nav">
-      <a href="/logout">Logout</a>
-      <a href="/recipes">Your Recipes</a>
-      <a href="/create_recipes/new">Create Recipe</a>
+      <% if logged_in? %>
+        <a href="/logout">Logout</a>
+        <a href="/create_recipes">All Recipes</a>
+        <a href="/create_recipes/new">New Recipe</a>
+      <% end %>
     </div>
     <div class="wrapper">
 
         <%= yield %>
 
       <footer class="branding">
-        <small>&copy; 2021 <strong>SinatraApp</strong></small>
+        <small>&copy; 2021 <strong>RecipeaApp</strong></small>
       </footer>
     </div>
 
