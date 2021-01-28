@@ -10,7 +10,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    # redirect '/login'
     if logged_in?
       redirect "/users/#{current_user.id}"
     
@@ -22,7 +21,6 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def logged_in?
-      # true if user is logged in, otherwise false
       !!current_user
     end
      
