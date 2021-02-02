@@ -1,12 +1,12 @@
-ALL RECIPES
+<h2> All Recipes </h2>
 
 <% @recipes.each do |recipe| %>
 
 
-    <h4><a href="/create_recipes/<%= recipe.id %>">
-    <%=recipe.created_at %></a></h4>
     
-    <p><%= recipe.content %></p>
-    <p>By <%= recipe.user.name %></p>
+    <h5>By <%= recipe.user.name %></h5>
+    <p><a href="/create_recipes/<%= recipe.id %>"><%= recipe.content %></a></p>
+    
+    <h6><%=recipe.created_at %></h6>
     <br><br>
 <% end %>

@@ -1,9 +1,9 @@
-SHOW PAGE FOR A NEW RECIPE
+<h2> Your Recipe </h2>
 
 <p><%= @create_recipe.content %></p>
 
 
-<% if authorized_to_edit?(@journal_entry) %>
+<% if authorized_to_edit?(@create_recipe) %>
     <a href="/create_recipes/<%= @create_recipe.id %>/edit">Edit Recipe</a>
     <br><br>
     <form class="" action="/create_recipes/<%= @create_recipe.id %>" method="post">

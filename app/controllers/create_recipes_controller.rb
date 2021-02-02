@@ -3,7 +3,7 @@ class CreateRecipesController < ApplicationController
     get '/create_recipes' do
         @recipes = Recipe.all
         erb :'/create_recipes/index'
-end
+    end
 
     get '/create_recipes/new' do
         erb :'/create_recipes/new'
@@ -13,7 +13,7 @@ end
     post '/create_recipes' do
         if !logged_in?
             redirect '/'
-        end
+    end
         
         
         if params[:content] != ""
@@ -42,8 +42,8 @@ end
         end
     else
         redirect '/'
+        end
     end
-end
 
     patch '/create_recipes/:id/edit' do
         @create_recipe = Recipe.find_by(id: params[:id])
@@ -68,5 +68,4 @@ end
             redirect '/create_recipes'
         end
     end
-
 end
